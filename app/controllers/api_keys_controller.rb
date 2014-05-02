@@ -7,6 +7,6 @@ class ApiKeysController < ApplicationController
   private
 
   def api_key_params
-    params.require(:api_key).permit(:user, :token)
+    params.require(:api_key).permit(:account, :token)
   end
 end

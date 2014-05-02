@@ -17,3 +17,15 @@ To run test suite
  * rake db:migrate
  * rake db:test:prepare
  * rspec spec
+
+To run the app
+
+ * rake db:create
+ * rake db:migrate
+ * rails s
+
+Routes have been set up to have a versioned api, URL's of the format:
+
+http://mydomainhere.com/v1/action_name
+
+Requests are defaulted to json, and the api namespacing exists but has been removed from the URL.
