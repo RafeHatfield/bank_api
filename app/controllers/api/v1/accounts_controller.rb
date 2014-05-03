@@ -6,8 +6,12 @@ module Api
       respond_to :json
 
       def authenticate
-        # byebug
-        account = Account.where(card_number: request['headers']['card_number'], pin: request['headers']['pin']).first
+        # using httparty on atm for simplicity, however it renames header vars weirdly; putting check here to allow api to still work when not using httparty
+        cardnum = request.headers['HTTP_CARD_NUMBER'] || request['headers']['card_number']
+        cardpin = request.headers['HTTP_PIN'] || request['headers']['pin']
+
+        account = Account.where(card_number: cardnum, pin: cardpin).first
+
         if account
           render json: { token: account.api_key.token }, status: 200
         else
@@ -23,8 +27,8 @@ module Api
       end
 
       def withdraw
-        # byebug
         amount = params[:amount].to_i
+
         if @current_account.withdraw(amount)
           render json: { transaction_status: 'Success' }, status: 200
         else

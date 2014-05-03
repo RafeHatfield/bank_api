@@ -8,8 +8,9 @@
 # Environment variables (ENV['...']) can be set in the file config/application.yml.
 # See http://railsapps.github.io/rails-environment-variables.html
 
-Accounts.create(card_number: '1', pin: '1234', balance: 1000)
-Accounts.create(card_number: '2', pin: '1234', balance: 1000)
-Accounts.create(card_number: '3', pin: '1234', balance: 1000)
-Accounts.create(card_number: '4', pin: '1234', balance: 1000)
-Accounts.create(card_number: '5', pin: '1234', balance: 0)
+Account.create(card_number: '1', pin: '1111', balance: 10000)
+Account.create(card_number: '2', pin: '1111', balance: 10000)
+Account.create(card_number: '3', pin: '1111', balance: 10000)
+Account.create(card_number: '4', pin: '1111', balance: 10000)
+Account.create(card_number: '5', pin: '1111', balance: 0)
+puts 'card numbers 1, 2, 3, 4, 5 all created with pin 1111'

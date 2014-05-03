@@ -28,7 +28,7 @@ describe Account do
   describe 'when balance converted to dollars' do
     before { account.balance = rand(0..100_000) }
     # it { account.balance_dollars eq 20 }
-    it 'shoud show correct dollar amount' do
+    it 'should show correct dollar amount' do
       account.balance_dollars.should eq account.balance / 100
     end
   end

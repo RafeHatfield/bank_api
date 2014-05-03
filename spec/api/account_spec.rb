@@ -23,7 +23,7 @@ describe 'Banking API' do
     initial_balance = Account.last.balance
     withdrawal_amount = 10
 
-    api_put "accounts/#{Account.last.id}/withdraw/#{withdrawal_amount}", token: Account.last.api_key.token
+    api_put "accounts/withdraw/#{withdrawal_amount}", token: Account.last.api_key.token
 
     response.status.should eq 200
 
@@ -37,7 +37,7 @@ describe 'Banking API' do
     initial_balance = Account.last.balance
     withdrawal_amount = 100_000
 
-    api_put "accounts/#{Account.last.id}/withdraw/#{withdrawal_amount}", token: Account.last.api_key.token
+    api_put "accounts/withdraw/#{withdrawal_amount}", token: Account.last.api_key.token
 
     response.status.should eq 403
 
@@ -51,7 +51,8 @@ describe 'Banking API' do
     initial_balance = Account.last.balance
     withdrawal_amount = -10
 
-    api_put "accounts/#{Account.last.id}/withdraw/#{withdrawal_amount}", token: Account.last.api_key.token
+    # api_put "accounts/#{Account.last.id}/withdraw/#{withdrawal_amount}", token: Account.last.api_key.token
+    api_put "accounts/withdraw/#{withdrawal_amount}", token: Account.last.api_key.token
 
     response.status.should eq 403
 
@@ -67,9 +68,7 @@ describe 'Banking API' do
     response.status.should eq 200
 
     payload = JSON.parse(response.body)
-    puts payload
     payload['token'].should eq Account.last.api_key.token
-
   end
 
   it 'should not correctly authenticate and return the token for an invalid account' do
@@ -78,7 +77,6 @@ describe 'Banking API' do
     response.status.should eq 401
 
     payload = JSON.parse(response.body)
-
     payload['message'].should eq 'Account not found'
   end
 end
