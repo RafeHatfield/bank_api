@@ -16,7 +16,7 @@ describe 'Banking API' do
 
     account['id'].should eq Account.last.id
     account['card_number'].should eq Account.last.card_number
-    account['balance'].should eq Account.last.balance
+    account['balance_dollars'].should eq Account.last.balance_dollars
   end
 
   it 'should correctly perform a withdrawal and return result of Success when balance allows' do
