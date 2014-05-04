@@ -8,8 +8,10 @@ Assumptions and Notes
  * pin shouldn't be stored as straight text
  * balance being stored as cents for simplicity, with conversion method to dollars
  * not checking if api_key is unique for simplicity
- * no mention made of valid amounts for withdrawals, so random amounts allowed (cents amounts etc)
+ * no mention made of valid amounts for withdrawals, so random amounts allowed
+ * all amounts are converted to integers, no cents allowed
  * token should probably be reset after each authentication, not done for simplicity
+ * logging is at 2 levels; there is an events model for transaction logging in the db, and entries are also written to Rails.logger
 
 To run test suite
 
